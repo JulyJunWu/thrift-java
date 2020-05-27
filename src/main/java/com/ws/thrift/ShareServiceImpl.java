@@ -6,7 +6,8 @@ import org.apache.thrift.TException;
  * 实现类
  */
 public class ShareServiceImpl implements SharedService.Iface {
+
     public SharedStruct getStruct(int key) throws TException {
-        return new SharedStruct(key,"Hello World");
+        return new SharedStruct(key, "Hello World , Thread = " + Thread.currentThread().getName());
     }
 }

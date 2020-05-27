@@ -11,7 +11,7 @@ import org.apache.thrift.transport.TTransport;
 public class ClientThrift {
 
     public static void main(String[] args) throws Exception {
-        TTransport transport = new TSocket("localhost", 9090, 60);
+        TTransport transport = new TSocket("localhost", 9090, 1000);
         // 协议要和服务端一致
         TProtocol protocol = new TBinaryProtocol(transport);
         SharedService.Client client = new SharedService.Client(protocol);
