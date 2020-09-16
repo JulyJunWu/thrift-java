@@ -19,7 +19,6 @@ public class TestSchedule {
 
         // 绑定Job,设置名称以及组
         JobDetail jobDetail = JobBuilder.newJob(MyJob.class).withIdentity("my-job", "WS").build();
-        System.out.println(jobDetail);
         // 3、构建Trigger实例,每隔1s执行一次
         Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "triggerGroup1")
                 .startNow()//立即生效
