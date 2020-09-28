@@ -2,6 +2,7 @@ package com.ws.thrift;
 
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
@@ -11,9 +12,10 @@ import org.apache.thrift.transport.TTransport;
 public class ClientThrift {
 
     public static void main(String[] args) throws Exception {
-        TTransport transport = new TSocket("localhost", 9090, 1000);
+        TTransport transport = new TSocket("localhost", 9090, 100000);
+        TFramedTransport tFramedTransport = new TFramedTransport(transport);
         // 协议要和服务端一致
-        TProtocol protocol = new TBinaryProtocol(transport);
+        TProtocol protocol = new TBinaryProtocol(tFramedTransport);
         SharedService.Client client = new SharedService.Client(protocol);
         transport.open();
         SharedStruct struct = client.getStruct(88);
